@@ -1,15 +1,22 @@
-body{
-    font-family: Arial;
-    text-align:center;
-    margin-top:100px;
-}
+function checkPassword() {
+    let password = document.getElementById("password").value;
+    let result = document.getElementById("result");
 
-input{
-    padding:10px;
-    width:250px;
-}
+    let strength = 0;
 
-button{
-    padding:10px;
-    margin-top:10px;
+    if(password.length >= 8) strength++;
+    if(/[A-Z]/.test(password)) strength++;
+    if(/[a-z]/.test(password)) strength++;
+    if(/[0-9]/.test(password)) strength++;
+    if(/[^A-Za-z0-9]/.test(password)) strength++;
+
+    if(strength <= 2){
+        result.innerHTML = "Weak Password";
+    }
+    else if(strength <= 4){
+        result.innerHTML = "Medium Password";
+    }
+    else{
+        result.innerHTML = "Strong Password";
+    }
 }
